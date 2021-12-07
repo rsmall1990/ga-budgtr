@@ -34,15 +34,14 @@ app.get("/budgets", (req, res) => {
 
 // New
 app.get("/budgets/newItem", (req, res) => {
-  res.render("./new.ejs", {
-
-  });
+  res.render("./new.ejs");
 });
 
 // Create
 app.post("/budgets", (req, res) => {
   // create new budget item
-  res.send("test");
+  budget.push(req.body);
+  res.redirect("/budgets"); // send user back to budgets list
 })
 
 // Show
