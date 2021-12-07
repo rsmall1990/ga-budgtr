@@ -32,12 +32,25 @@ app.get("/budgets", (req, res) => {
   });
 });
 
+// New
+app.get("/budgets/newItem", (req, res) => {
+  res.render("./new.ejs", {
+
+  });
+});
+
+// Create
+app.post("/budgets", (req, res) => {
+  // create new budget item
+  res.send("test");
+})
+
 // Show
 app.get("/budgets/:indexOfBudgetArray", (req, res) => {
   res.render("show.ejs", {
-    budgetItem: budget[req.params.indexOfBudgetArray] // sending requested budget item object to show.ejs
-    });
+    budgetItem: budget[req.params.indexOfBudgetArray], // sending requested budget item object to show.ejs
   });
+});
 
 // Tell the app to listen for requests on port 3000
 app.listen(3000, () => console.log("Express is listening"));
