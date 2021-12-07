@@ -8,10 +8,16 @@
     <link rel="stylesheet" href="/css/skeleton.css" />
     <title>Budgets</title>
 </head>
-<body>
+<body id="backgroundStyle">
+    <% if( bankAccount < 0) { %>
+        <style> #backgroundStyle {background-color: red} </style>
+    <% } else if( bankAccount > 1000){ %>
+        <style> #backgroundStyle {background-color: green} </style>
+    <% }; %>
     <div class="container">
         <h1>Budgtr ALL</h1>
         <button><a href="/budgets/newItem">New Item</a></button>
+        <h4>Bank Account Balance: <%= bankAccount %> </h4>
         <table>
             <tr>
                 <th>Date</th>

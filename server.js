@@ -9,7 +9,8 @@ const app = express();
 // configure port
 const port = process.env.PORT;
 
-// Handle/connect to database
+// Cached Variables
+let bankAccount = 0;
 
 // Mount middleware
 app.use(express.static("public"));
@@ -27,8 +28,13 @@ app.use(express.urlencoded({ extended: false }));
 // Index
 
 app.get("/budgets", (req, res) => {
+  for (i = 0; i < budget.length; i += 1) {
+    bankAccount = parseInt(budget[i].amount) + bankAccount;
+    console.log(bankAccount);
+  }
   res.render("index.ejs", {
     budget,
+    bankAccount,
   });
 });
 
@@ -42,7 +48,7 @@ app.post("/budgets", (req, res) => {
   // create new budget item
   budget.push(req.body);
   res.redirect("/budgets"); // send user back to budgets list
-})
+});
 
 // Show
 app.get("/budgets/:indexOfBudgetArray", (req, res) => {
